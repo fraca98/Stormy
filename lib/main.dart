@@ -3,8 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:stormy/screens/homepage.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
 
   runApp(const MyApp());
 }

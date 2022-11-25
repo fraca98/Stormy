@@ -41,16 +41,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
         child: SafeArea(
             child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30.0),
+          padding: const EdgeInsets.symmetric(vertical: 25.0),
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Row(
                   children: [
-                    Icon(
-                      MdiIcons.mapMarker,
-                      color: Color(0xFF2F2E62),
+                    Padding(
+                      padding: EdgeInsets.only(left: 8),
+                      child: Icon(
+                        MdiIcons.mapMarker,
+                        color: Color(0xFF2F2E62),
+                      ),
                     ),
                     SizedBox(
                       width: 10,
@@ -62,20 +65,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           color: Color(0xFF2F2E62),
                         )),
                     Spacer(),
-                    Icon(
-                      MdiIcons.calendar,
-                      color: Color(0xFF2F2E62),
+                    Container(
+                      child: IconButton(
+                        icon: Icon(
+                          MdiIcons.mapSearch,
+                          color: Color(0xFF2F2E62),
+                        ),
+                        onPressed: () {},
+                      ),
                     ),
                   ],
                 ),
               ),
               Container(
-                  padding: EdgeInsets.all(20),
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  padding: EdgeInsets.all(5),
                   child: RotationTransition(
                     turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
                     child: Image.asset(
                       'assets/images/weather/Sun.png',
-                      width: MediaQuery.of(context).size.width * 0.7,
                     ),
                   )),
               Text(
@@ -92,7 +100,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     '28',
                     style: GoogleFonts.quicksand(
                       fontSize: 75,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       color: Color(0xFF2F2E62),
                     ),
                   ),
@@ -103,7 +111,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     '°',
                     style: GoogleFonts.quicksand(
                       fontSize: 75,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       color: Color(0xFF2F2E62),
                     ),
                   ),
@@ -114,8 +122,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 children: [
                   Container(
                     child: Row(children: [
-                      Icon(MdiIcons.weatherWindy),
-                      Text(' 2 km/h'),
+                      Icon(
+                        MdiIcons.weatherWindy,
+                        color: Color(0xFF2F2E62),
+                      ),
+                      Text(
+                        ' 2 km/h',
+                        style: GoogleFonts.quicksand(
+                          color: Color(0xFF2F2E62),
+                        ),
+                      ),
                     ]),
                   ),
                   SizedBox(
@@ -123,8 +139,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
                   Container(
                     child: Row(children: [
-                      Icon(MdiIcons.waterOutline),
-                      Text('32%'),
+                      Icon(
+                        MdiIcons.waterOutline,
+                        color: Color(0xFF2F2E62),
+                      ),
+                      Text(
+                        ' 32%',
+                        style: GoogleFonts.quicksand(
+                          color: Color(0xFF2F2E62),
+                        ),
+                      ),
                     ]),
                   ),
                   SizedBox(
@@ -132,18 +156,56 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
                   Container(
                     child: Row(children: [
-                      Icon(MdiIcons.smoke),
-                      Text(' 2 km/h'),
+                      Icon(
+                        MdiIcons.leaf,
+                        color: Color(0xFF2F2E62),
+                      ),
+                      Text(
+                        ' 2 AQI',
+                        style: GoogleFonts.quicksand(
+                          color: Color(0xFF2F2E62),
+                        ),
+                      ),
                     ]),
                   )
                 ],
               ),
               SizedBox(
+                height: 20,
+              ),
+              SizedBox(
                 height: 50,
+                child: ListView.separated(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 7,
+                  separatorBuilder: (context, index) {
+                    return SizedBox(
+                      width: 15,
+                    );
+                  },
+                  itemBuilder: (context, index) {
+                    return TextButton(
+                        style: ButtonStyle(
+                            overlayColor:
+                                MaterialStateProperty.all(Colors.transparent)),
+                        onPressed: () {},
+                        child: Text(
+                          'Today, 18 Sep',
+                          style: GoogleFonts.quicksand(
+                            color: Color(0xFF2F2E62),
+                          ),
+                        ));
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 10,
               ),
               Expanded(
                 child: ListView.builder(
-                    padding: EdgeInsets.only(left: 5, right: 5),
+                    padding: EdgeInsets.symmetric(horizontal: 8),
                     physics: BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemCount: 5,
@@ -165,9 +227,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     color: Color(0xFF2F2E62),
                                   ),
                                 ),
-                                Spacer(),
                                 Image.asset('assets/images/weather/Sun.png'),
-                                Spacer(),
                                 Stack(children: [
                                   Align(
                                     child: Text(
